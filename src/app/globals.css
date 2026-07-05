@@ -2,7 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* 1. Prevent layout shifts and ensure consistent focus behaviors */
+  html {
+    @apply scroll-smooth antialiased text-slate-600 bg-slate-50;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 2. Premium typography: Make headers crisp and distinct */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 tracking-tight font-semibold;
+  }
+
+  /* 3. Luxury Custom Text Selection Color */
+  ::selection {
+    @apply bg-amber-500/20 text-amber-950;
+  }
+}
+
 @layer utilities {
+  /* 4. Keeps your custom utility clean, organized, and properly typed for tailwind */
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
@@ -10,13 +29,36 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* 5. Shorthand for premium luxury borders (subtle soft lines instead of harsh grays) */
+  .border-luxury {
+    @apply border border-slate-200/60 dark:border-slate-800/40;
+  }
 }
 
-.animate-spin-slow {
-  animation: spin 12s linear infinite;
+/* 6. Advanced Animations & Transitions */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite; /* Slightly slowed down to 20s for an elegant, premium feel */
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
-@keyframes spin {
+@keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
