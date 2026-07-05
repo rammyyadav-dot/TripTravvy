@@ -1,2 +1,2 @@
 # TripTravvy
-A Tailor-made Boutique travel & Tours company.
+A Tailor-made Boutique travel & Tours company
