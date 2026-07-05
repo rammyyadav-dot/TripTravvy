@@ -2,10 +2,13 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
+export type Season = 'Winter' | 'Summer' | 'Monsoon';
+export type SeasonFilter = 'all' | Season;
+
 export interface Package {
   id: string;
   title: string;
-  duration: number; 
+  duration: number;
   pricing: {
     basePrice: number;
     currency: string;
@@ -14,7 +17,7 @@ export interface Package {
   image: string;
   category: 'international' | 'domestic' | 'spiritual';
   tags: string[];
-  season: 'Winter' | 'Summer' | 'Monsoon';
+  season: Season;
   inventory: {
     minSeatsLeft: number;
     totalCapacity: number;
@@ -27,8 +30,8 @@ interface TravelDataContextProps {
   setSearchQuery: (q: string) => void;
   selectedCategory: string;
   setSelectedCategory: (cat: string) => void;
-  selectedSeason: 'Winter' | 'Summer' | 'Monsoon';
-  setSelectedSeason: (season: 'Winter' | 'Summer' | 'Monsoon') => void;
+  selectedSeason: SeasonFilter;
+  setSelectedSeason: (season: SeasonFilter) => void;
 }
 
 const TravelDataContext = createContext<TravelDataContextProps | undefined>(undefined);
@@ -36,7 +39,7 @@ const TravelDataContext = createContext<TravelDataContextProps | undefined>(unde
 export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedSeason, setSelectedSeason] = useState<'Winter' | 'Summer' | 'Monsoon'>('Winter');
+  const [selectedSeason, setSelectedSeason] = useState<SeasonFilter>('all');
 
   const [packages] = useState<Package[]>([
     {
@@ -48,7 +51,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'domestic',
       tags: ['Boutique Luxury', 'Himalayan Valleys', 'Private Chauffeur'],
       season: 'Summer',
-      inventory: { minSeatsLeft: 2, totalCapacity: 12 }
+      inventory: { minSeatsLeft: 2, totalCapacity: 12 },
     },
     {
       id: 'bhutan-int',
@@ -59,7 +62,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'international',
       tags: ['Premium Charter', 'Cultural immersion', 'Aman Villas'],
       season: 'Winter',
-      inventory: { minSeatsLeft: 5, totalCapacity: 8 }
+      inventory: { minSeatsLeft: 5, totalCapacity: 8 },
     },
     {
       id: 'japan-splendors',
@@ -70,7 +73,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'international',
       tags: ['First Class Bullet Train', 'Michelin Dining', 'Private Guide'],
       season: 'Winter',
-      inventory: { minSeatsLeft: 1, totalCapacity: 6 }
+      inventory: { minSeatsLeft: 1, totalCapacity: 6 },
     },
     {
       id: 'sea-premium',
@@ -81,7 +84,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'international',
       tags: ['Multi-Country Loft', 'Yacht Escapes', 'Curated Leisure'],
       season: 'Summer',
-      inventory: { minSeatsLeft: 3, totalCapacity: 10 }
+      inventory: { minSeatsLeft: 3, totalCapacity: 10 },
     },
     {
       id: 'char-jyotirlinga',
@@ -92,7 +95,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'spiritual',
       tags: ['VIP Darshan Pro', 'Luxury Logistics', 'Heritage Stay'],
       season: 'Monsoon',
-      inventory: { minSeatsLeft: 3, totalCapacity: 15 }
+      inventory: { minSeatsLeft: 3, totalCapacity: 15 },
     },
     {
       id: 'passionate-paris',
@@ -103,7 +106,7 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'international',
       tags: ['Penthouse Views', 'Curated Arts', 'Elite Chauffeur'],
       season: 'Winter',
-      inventory: { minSeatsLeft: 4, totalCapacity: 8 }
+      inventory: { minSeatsLeft: 4, totalCapacity: 8 },
     },
     {
       id: 'bali-honeymoon',
@@ -114,8 +117,8 @@ export const TravelDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       category: 'international',
       tags: ['Infinity Pool Villas', 'Private Beach Dinner', 'Wellness Spa'],
       season: 'Monsoon',
-      inventory: { minSeatsLeft: 2, totalCapacity: 6 }
-    }
+      inventory: { minSeatsLeft: 2, totalCapacity: 6 },
+    },
   ]);
 
   return (
