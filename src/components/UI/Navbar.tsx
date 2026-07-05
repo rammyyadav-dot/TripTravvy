@@ -13,10 +13,13 @@ export const Navbar = () => {
       <div className="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-8 flex justify-between items-center border-b border-gold/10">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 font-medium tracking-wide">
-            <Phone size={12} className="text-amber-500" /> Executive Concierge: <b className="text-amber-400">1800 209 3344</b>
+            <Phone size={12} className="text-amber-500" /> Executive Concierge:{' '}
+            <b className="text-amber-400">1800 209 3344</b>
           </span>
           <span className="hidden md:inline text-slate-800">|</span>
-          <span className="hidden md:inline tracking-wider uppercase text-[10px]">Boutique Operations Hub</span>
+          <span className="hidden md:inline tracking-wider uppercase text-[10px]">
+            Boutique Operations Hub
+          </span>
         </div>
         <div className="flex items-center gap-4">
           <button className="flex items-center gap-1 hover:text-amber-400 transition tracking-wide">
@@ -32,11 +35,16 @@ export const Navbar = () => {
           <Sparkles size={14} className="text-amber-400 animate-pulse hidden sm:inline" />
         </Link>
 
-        {/* Links */}
         <div className="hidden md:flex items-center gap-8 font-semibold text-sm tracking-wide text-slate-300">
-          <Link href="/" className="hover:text-amber-400 transition flex items-center gap-1.5"><Compass size={15}/> Escape Home</Link>
-          <Link href="/packages" className="hover:text-amber-400 transition flex items-center gap-1.5"><Grid size={15}/> Bespoke Portfolios</Link>
-          <Link href="/cruise" className="hover:text-amber-400 transition flex items-center gap-1.5"><Ship size={15}/> Marine Charters</Link>
+          <Link href="/" className="hover:text-amber-400 transition flex items-center gap-1.5">
+            <Compass size={15} /> Escape Home
+          </Link>
+          <Link href="/packages" className="hover:text-amber-400 transition flex items-center gap-1.5">
+            <Grid size={15} /> Bespoke Portfolios
+          </Link>
+          <Link href="/cruise" className="hover:text-amber-400 transition flex items-center gap-1.5">
+            <Ship size={15} /> Marine Charters
+          </Link>
         </div>
 
         <div className="hidden md:block">
@@ -45,18 +53,39 @@ export const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Controller */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white focus:outline-none">
+        <button
+          onClick={() => setIsOpen((open) => !open)}
+          className="md:hidden text-white focus:outline-none"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* Menu Overlay */}
       {isOpen && (
         <div className="md:hidden bg-slate-900 border-b border-slate-800 shadow-xl px-6 py-6 flex flex-col gap-4 animate-fadeIn text-slate-200">
-          <Link href="/" onClick={() => setIsOpen(false)} className="py-2 font-medium border-b border-slate-800 hover:text-amber-400">Escape Home</Link>
-          <Link href="/packages" onClick={() => setIsOpen(false)} className="py-2 font-medium border-b border-slate-800 hover:text-amber-400">Bespoke Portfolios</Link>
-          <Link href="/cruise" onClick={() => setIsOpen(false)} className="py-2 font-medium border-b border-slate-800 hover:text-amber-400">Marine Charters</Link>
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="py-2 font-medium border-b border-slate-800 hover:text-amber-400"
+          >
+            Escape Home
+          </Link>
+          <Link
+            href="/packages"
+            onClick={() => setIsOpen(false)}
+            className="py-2 font-medium border-b border-slate-800 hover:text-amber-400"
+          >
+            Bespoke Portfolios
+          </Link>
+          <Link
+            href="/cruise"
+            onClick={() => setIsOpen(false)}
+            className="py-2 font-medium border-b border-slate-800 hover:text-amber-400"
+          >
+            Marine Charters
+          </Link>
           <button className="bg-amber-500 text-slate-950 w-full py-3 rounded-lg font-bold text-xs tracking-widest uppercase mt-2">
             Design My Tour
           </button>
